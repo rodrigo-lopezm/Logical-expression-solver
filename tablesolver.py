@@ -1,8 +1,9 @@
 '''
 TODO:
-    - Tokenize de expression on a second pass
-    
+    - Tokenize the expression on the first pass
+    - Simplify the expressions
     - Add solver
+    - Output table FORMATTED
 '''
 
 Operators = ["(", ")", "&", "+", "!"]
