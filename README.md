@@ -12,7 +12,7 @@ Currently, a single pass parser has been implemented by which any equation is ch
 - **Constant support**: Accepts the use of `0` and `1` as operands.
 
 ## Roadmap:
-- [] **Tokenization**: Converting the raw, parsed string into an iterable list of logical tokens.
+- [**IN PROGRESS**] **Tokenization**: Converting the raw, parsed string into an iterable list of logical tokens.
 - [] **Replacement engine**: Evaluating the logical expressions respecting standard presedence: Parentheses `()` -> NOT `!` ->  AND `&` -> OR `+`.
 - [] **Terminal UI**: Rendering the final truth table with alphabetical letters and column formatting.
 - [] **Sum of products formatting**: After the truth table is generated, the user will be asked if they want the sum of products equivalnce to the expression.
