@@ -78,6 +78,7 @@ def StartTable():
         RowVals = f"{i:0{len(Vars)}b}"
         CurrentVals = dict(zip(Vars, RowVals))
         
+        
 
 Passer()
 print(Vars)

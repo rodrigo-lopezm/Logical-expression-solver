@@ -10,10 +10,11 @@ Currently, a single pass parser has been implemented by which any equation is ch
 - **Unary and binary operator logic**: Differentiates the rules for the `!` (NOT) operator versus `&` (AND) and `+` (OR), allowing syntax such as `A & B` or `!!A`.
 - **Automatic variable extraction**: Identifies variables on first pass, with a built-in limit of *6 variables*, preventing terminal clutter ($2^6 = 64$ rows).
 - **Constant support**: Accepts the use of `0` and `1` as operands.
+- **Tokenization**: Converts the raw, parsed boolean expression into an iterable list of logical tokens.
 
 ## Roadmap:
-- [**IN PROGRESS**] **Tokenization**: Converting the raw, parsed string into an iterable list of logical tokens.
-- [] **Replacement engine**: Evaluating the logical expressions respecting standard presedence: Parentheses `()` -> NOT `!` ->  AND `&` -> OR `+`.
+- [**DONE**] **Tokenization**: Converting the raw, parsed string into an iterable list of logical tokens.
+- [**IN PROGRESS**] **Replacement engine**: Evaluating the logical expressions respecting standard presedence: Parentheses `()` -> NOT `!` ->  AND `&` -> OR `+`.
 - [] **Terminal UI**: Rendering the final truth table with alphabetical letters and column formatting.
 - [] **Sum of products formatting**: After the truth table is generated, the user will be asked if they want the sum of products equivalnce to the expression.
 
