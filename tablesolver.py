@@ -10,7 +10,7 @@ Operators = ["(", ")", "&", "+", "!"]
 SubVars = ["1","0"]
 Tokens = []
 Vars = []
-expression = "a & b + !C + D"
+expression = "a & b + !!C + D"
 
 
 def Passer():
@@ -70,6 +70,38 @@ def Passer():
     else:
         return True
 
+def Simplifyer():
+    global Tokens
+    while i < len(Tokens):
+        
+
+def SetValues(Tokens,Values):
+    Substituted = []
+    for token in Tokens:
+        print(Values.get(token, token))
+        Substituted.append(Values.get(token, token))
+        return Substituted
+
+def SolveExpression(Tokens):
+    if len(Tokens) == 1:
+        return Tokens
+    #Parentheses solver
+    LastOpen = -1; Closed = -1
+    for i in range(len(Tokens)):
+        if Tokens[i] == "(":
+            LastOpen = i
+        elif Tokens[i]==")":
+            Closed = i
+            break
+    
+    if LastOpen != -1 and Closed != -1:
+        SubExpression = Tokens[LastOpen+1:Closed]
+        Tokens[LastOpen:Closed+1] = SolveExpression(SubExpression)
+
+    #Negation solver
+
+
+
 def StartTable():
     global Tokens; global Vars
     NumRows = 2 ** len(Vars)
@@ -77,7 +109,7 @@ def StartTable():
         #Generates the corresponding binary values for each row and stores them in a dictionary
         RowVals = f"{i:0{len(Vars)}b}"
         CurrentVals = dict(zip(Vars, RowVals))
-        
+        CurrentTokens = SetValues(Tokens, CurrentVals)
         
 
 Passer()
