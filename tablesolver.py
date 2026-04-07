@@ -89,7 +89,7 @@ def SetValues(Tokens,Values):
 
 def SolveExpression(Tokens):
     if len(Tokens) == 1:
-        return Tokens
+        return SolveExpression(Tokens)
     #Parentheses solver
     LastOpen = -1; Closed = -1
     for i in range(len(Tokens)):
@@ -97,7 +97,7 @@ def SolveExpression(Tokens):
             LastOpen = i
         elif Tokens[i]==")":
             Closed = i
-            break
+            break   
     
     if LastOpen != -1 and Closed != -1:
         SubExpression = Tokens[LastOpen+1:Closed]
