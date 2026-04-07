@@ -72,8 +72,13 @@ def Passer():
 
 def Simplifyer():
     global Tokens
-    while i < len(Tokens):
-        
+    i=0
+    while i < len(Tokens)-1:
+        if Tokens[i] == "!" and Tokens[i+1] == "!":
+            Tokens.pop(i)
+            Tokens.pop(i)
+        else:
+            i+=1
 
 def SetValues(Tokens,Values):
     Substituted = []
@@ -98,8 +103,6 @@ def SolveExpression(Tokens):
         SubExpression = Tokens[LastOpen+1:Closed]
         Tokens[LastOpen:Closed+1] = SolveExpression(SubExpression)
 
-    #Negation solver
-
 
 
 def StartTable():
@@ -112,7 +115,8 @@ def StartTable():
         CurrentTokens = SetValues(Tokens, CurrentVals)
         
 
-Passer()
-print(Vars)
-print(Tokens)
-StartTable()
+if Passer():
+    Simplifyer()
+    print(Vars)
+    print(Tokens)
+    StartTable()
