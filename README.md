@@ -34,5 +34,5 @@ Currently, a single pass parser has been implemented by which any equation is ch
 > Limit of 6 boolean variables.
 
 ## Usage:
-    On running the tablesolver.py script, you'll be met with an expression input. Once an expression with the correct formatting has been entered, the rest of the program will be executed.
+On running the tablesolver.py script, you'll be met with an expression input. Once an expression with the correct formatting has been entered, the rest of the program will be executed.
     
