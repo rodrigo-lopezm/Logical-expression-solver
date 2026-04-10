@@ -1,8 +1,8 @@
 # Boolean truth table evaluator
 A robust command-line based tool in order to solve simple boolean equations and returning formatted truth tables, made as a practice project
 
-## Current progress: Single Pass Parser
-Currently, a single pass parser has been implemented by which any equation is checked in a single loop to ensure the safety of the equation before any evaluation happens.
+## Current progress: Simple equation solving
+Currently, simple boolean expressions can be evaluated and the results formatted into a table, all terminal based.
 
 ### Features (Up to now):
 - **Syntax validation**: Detects and rejects any invalid operator groupings (e.g. as `&&`, `&+`, `!&`, etc.), consecutive variables (e.g. `AB`) and dangling operators
