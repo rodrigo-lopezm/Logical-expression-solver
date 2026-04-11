@@ -1,12 +1,4 @@
-'''
-TODO:
-    - Tokenize the expression on the first pass
-    - Simplify the expressions
-    - Add solver
-    - Output table FORMATTED
-'''
-
-Operators = ["(", ")", "&", "+", "!"]
+Operators = ["(", "!", ")", "&", "+", "^", ">", "="]
 SubVars = ["1","0"]
 Tokens = []
 Vars = []
@@ -22,7 +14,7 @@ def Passer():
         #Checks for equation validity
         if char == " ":
             continue
-        if Before == "" and char in ["&", "+", ")"]:
+        if Before == "" and char in Operators[2:len(Operators)+1]:
             print("Wrong format: Equation starts with operator")
             return False
         if char not in Operators and not char.isalpha() and char not in SubVars:
@@ -46,7 +38,7 @@ def Passer():
                 else:
                     Depth+=1
             elif char == ")":
-                if Before in ["&", "+"]:
+                if Before in Operators[3:len(Operators)+1]:
                     print("Wrong format")
                     return False
                 else:
@@ -56,17 +48,18 @@ def Passer():
                     print("Wrong format")
                     return False
             else:
-                if Before in ["&","+","!","("]:
+                if Before in Operators[3:len(Operators)+1] or Before == "(":
                     print("Worng format")
                     return False
 
         Tokens.append(char.upper())
         Before = char
 
-    if Depth != 0 or Before in ["&","+","!","("]:
+    if Depth != 0 or Before in Operators[3:len(Operators)+1] or Before == "(":
         print("Wrong format: incomplete expression")
         return False
     else:
+        print("\n")
         return True
 
 def Simplifyer():
@@ -122,11 +115,43 @@ def SolveExpression(Tokens):
 
     i=1
     while i<len(Tokens)-1:
+        if Tokens[i] == "^":
+            if Tokens[i-1] == "1" and Tokens[i+1] == "0":
+                Tokens[i-1:i+2] = ["1"]
+            elif Tokens[i-1] == "0" and Tokens[i+1] == "1":
+                Tokens[i-1:i+2] = ["1"]
+            else:
+                Tokens[i-1:i+2] = ["0"]
+        else:
+            i+=1
+
+    i=1
+    while i<len(Tokens)-1:
         if Tokens[i] == "+":
             if Tokens[i-1] == "0" and Tokens[i+1] == "0":
                 Tokens[i-1:i+2]=["0"]
             else:
                 Tokens[i-1:i+2]=["1"]
+        else:
+            i+=1
+
+    i=1
+    while i<len(Tokens)-1:
+        if Tokens[i] == ">":
+            if Tokens[i-1] == "1" and Tokens[i+1] == "0":
+                Tokens[i-1:i+2] = ["0"]
+            else:
+                Tokens[i-1:i+2] = ["1"]
+        else:
+            i+=1
+
+    i=1
+    while i<len(Tokens)-1:
+        if Tokens[i] == "=":
+            if Tokens[i-1] == Tokens[i+1]:
+                Tokens[i-1:i+2] = ["1"]
+            else:
+                Tokens[i-1:i+2] = ["0"]
         else:
             i+=1
 
