@@ -129,7 +129,9 @@ def SolveExpression(Tokens):
             elif Tokens[i-1] == "0" and Tokens[i+1] == "1":
                 Tokens[i-1:i+2] = ["1"]
             else:
-                Tokens[i-1:1+2] = ["0"]
+                Tokens[i-1:i+2] = ["0"]
+        else:
+            i+=1
 
     i=1
     while i<len(Tokens)-1:
@@ -138,6 +140,26 @@ def SolveExpression(Tokens):
                 Tokens[i-1:i+2]=["0"]
             else:
                 Tokens[i-1:i+2]=["1"]
+        else:
+            i+=1
+
+    i=1
+    while i<len(Tokens)-1:
+        if Tokens[i] == ">":
+            if Tokens[i-1] == "1" and Tokens[i+1] == "0":
+                Tokens[i-1:i+2] = ["0"]
+            else:
+                Tokens[i-1:i+2] = ["1"]
+        else:
+            i+=1
+
+    i=1
+    while i<len(Tokens)-1:
+        if Tokens[i] == "=":
+            if Tokens[i-1] == Tokens[i+1]:
+                Tokens[i-1:i+2] = ["1"]
+            else:
+                Tokens[i-1:i+2] = ["0"]
         else:
             i+=1
 

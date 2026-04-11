@@ -11,13 +11,13 @@ Currently, simple boolean expressions can be evaluated and the results formatted
 - **Automatic variable extraction**: Identifies variables on first pass, with a built-in limit of *6 variables*, preventing terminal clutter ($2^6 = 64$ rows).
 - **Constant support**: Accepts the use of `0` and `1` as operands.
 - **Tokenization**: Converts the raw, parsed boolean expression into an iterable list of logical tokens.
-- **Replacement engine**: Replaces the boolean variables in the tokens list to their corresponding set of values, following the correct precedence order (Parentheses `()` -> NOT `!` ->  AND `&`-> XOR `^` -> OR `+`).
+- **Replacement engine**: Replaces the boolean variables in the tokens list to their corresponding set of values, following the correct precedence order (Parentheses `()` -> NOT `!` ->  AND `&`-> XOR `^` -> OR `+`-> Conditional `>` -> Biconditional `=`).
 -  **Terminal UI**: Simple formatted truth table output and input/validation of expressions.
 
 ## Roadmap:
 - [] **Sum of products formatting**: After the truth table is generated, the user will be asked if they want the sum of products equivalnce to the expression.
 - [**DONE**] **Logic gate operators**: Allow for XOR operators.
-- [**IN PROGRESS**] **Conditional and biconditional**: Allow for conditional and biconditional operators.
+- [**DONE**] **Conditional and biconditional**: Allow for conditional and biconditional operators.
 - [] **More complex simplification**: Simplify more complex equations for faster solving and for user's sake.
 - [] **K-Map generation**: Generate a K-Map and draw appropiate loops around correct groups (allows for simplified sum of products).
 - [] **Non-terminal interface**: Change the interface to a executable program window with its own UI rather than the terminal.
