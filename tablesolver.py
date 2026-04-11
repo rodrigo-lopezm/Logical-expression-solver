@@ -1,11 +1,3 @@
-'''
-TODO:
-    - Tokenize the expression on the first pass
-    - Simplify the expressions
-    - Add solver
-    - Output table FORMATTED
-'''
-
 Operators = ["(", "!", ")", "&", "+", "^", ">", "="]
 SubVars = ["1","0"]
 Tokens = []
