@@ -159,6 +159,7 @@ def SolveExpression(Tokens):
 
 def StartTable():
     global Tokens; global Vars
+    minterms = []
     print(" | ".join(Vars) + " | RESULT")
     print("-" * (len(Vars) * 4 + 8))
     NumRows = 2 ** len(Vars)
@@ -170,13 +171,41 @@ def StartTable():
         SolvedExpression = SolveExpression(CurrentTokens.copy()) # type: ignore
         Variables = " | ".join(CurrentVals.values())
         print(f"{Variables} |   {SolvedExpression[0]}")
+        if SolvedExpression[0] == "1":
+            minterms.append(CurrentVals)
+    return minterms
 
 print("Welcome to the simple boolean truth table evaluator, please enter a boolean expression following the set syntax.\n\n")   
 while True:
     expression = input("Please enter an expression: ")
     if Passer():
         Simplifyer()
-        StartTable()
+        minterms = StartTable()
+        print("\n")
+        while True:
+            sop_choice = input("Would you like a sum-of-products equivalent? (Y/N): ").upper().strip()
+            if sop_choice not in ["Y", "N"]:
+                print("Invalid choice, enter again. \n")
+            else:
+                break
+        
+        if sop_choice == "Y":
+            if not minterms:
+                print("Sum-of-products: 0")
+            elif len(minterms) == 2 ** len(Vars):
+                print("Sum-of-products: 1")
+            else:
+                sop_terms = []
+                for term in minterms:
+                    parts = []
+                    for var in Vars:
+                        if term[var] == "1":
+                            parts.append(var)
+                        else:
+                            parts.append("!" + var)
+                    sop_terms.append("(" + " & ".join(parts) + ")")
+                print("Sum-of-products: " + " + ".join(sop_terms))
+
         Tokens = []
         expression = ""
         Vars = []
